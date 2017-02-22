@@ -49,3 +49,8 @@ coverage.xml
 # Translations
 *.mo
 *.pot
+
+
+# own ignores
+
+tests/basic.py
