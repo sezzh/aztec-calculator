@@ -3,9 +3,9 @@
 
 
 class Aztec(object):
-    """docstring for AztecCalculator."""
+    """Aztec calculator class."""
 
-    # Class constants
+    # Class attributes.
     FWHM = 1
     NEFD = 4.9
     VERSION = '0.1.0'
@@ -15,7 +15,7 @@ class Aztec(object):
         """Constructor which recives at least a mode.
 
         Params:
-            mode = (Integer) between 1 to 3.
+            mode -> (Integer) between 1 to 3.
         """
         self.__mode = mode
         self.__name = self.NAME
@@ -35,7 +35,14 @@ class Aztec(object):
         return self.__mode
 
     def set_calculator_mode(self, mode):
-        """Change the current calculator's mode."""
+        """Change the current calculator's mode.
+
+        This method changes calculator's mode which will be use to perform the
+        calculation via aztec.calculate(**kwargs) method.
+
+        Params args:
+        mode -> (Integer) between 1 to 3.
+        """
         self.__mode = mode
 
     def __calculate_large(self):
@@ -72,7 +79,7 @@ class Aztec(object):
         This is the method you must execute in order to perform calculus and
         get a result dict.
 
-        Params:
+        Params keyword arguments:
 
         map_area -> (Integer).
         dd -> (Float).
