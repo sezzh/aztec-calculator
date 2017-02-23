@@ -8,7 +8,7 @@ class Aztec(object):
     # Class attributes.
     FWHM = 1
     NEFD = 4.9
-    VERSION = '0.1.4'
+    VERSION = '0.1.5'
     NAME = 'azTec'
 
     def __init__(self, mode):
@@ -21,6 +21,7 @@ class Aztec(object):
         self.__name = self.NAME
         self.__version = self.VERSION
         self.__kwargs = None
+        self.__validate_mode()
 
     def get_calculator_name(self):
         """Return the defined calculator's name."""
@@ -52,8 +53,10 @@ class Aztec(object):
 
     def __calculate_small(self):
         """Return the result of small's formula."""
-        return float('{0:.2f}'.format(((((float(2.6) * float(self.__kwargs['nefd']))) /
-                float(self.__kwargs['dd']))**2) * (float(8) / float(3600))))
+        return float('{0:.2f}'.format(((((float(2.6) *
+                     float(self.__kwargs['nefd']))) /
+                     float(self.__kwargs['dd']))**2) *
+                     (float(8) / float(3600))))
 
     def __calculate_photometry(self):
         """Return the result dict of Time integration & positional methods."""
@@ -92,12 +95,24 @@ class Aztec(object):
         Dict
 
         """
+        # validate mode must be between 1 to 3.
+        self.__validate_mode()
+
         result = {}
         self.__kwargs = kwargs
-        if self.__mode == 1:
-            result['Hr'] = self.__calculate_large()
-        elif self.__mode == 2:
-            result['Hr'] = self.__calculate_small()
-        elif self.__mode == 3:
-            result = self.__calculate_photometry()
+        try:
+            if self.__mode == 1:
+                result['Hr'] = self.__calculate_large()
+            elif self.__mode == 2:
+                result['Hr'] = self.__calculate_small()
+            elif self.__mode == 3:
+                result = self.__calculate_photometry()
+        except Exception as e:
+            raise e
         return result
+
+    def __validate_mode(self):
+        if self.__mode < 1:
+            raise Exception('MODE must be greater than 0')
+        elif self.__mode > 3:
+            raise Exception('MODE must be lesser than 4')

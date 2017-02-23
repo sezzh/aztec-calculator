@@ -14,7 +14,7 @@ $ python -m unittest discover -v tests -p test_aztec.py
 class AztecTestCase(unittest.TestCase):
     """Test class for validate correct functionality of Aztec Calculator."""
 
-    VERSION = '0.1.4'
+    VERSION = '0.1.5'
     NAME = 'azTec'
     MODE = [1, 2, 3]
     DEFAULT_MODE = 1
@@ -82,6 +82,25 @@ class AztecTestCase(unittest.TestCase):
             'message'
         )
 
+    def test_expect_error_divided_by_cero(self):
+        """Catch calculator divided by cero error."""
+        self.calc.set_calculator_mode(1)
+        dd = 0
+        map_area = 100
+        with self.assertRaises(ZeroDivisionError) as context:
+            self.calc.calculate(dd=dd, map_area=map_area)
+
+    def test_expect_error_mode_code_greater(self):
+        """."""
+        self.calc.set_calculator_mode(4)
+        with self.assertRaises(Exception) as context:
+            self.calculate()
+
+    def test_expect_error_mode_code_less(self):
+        """."""
+        self.calc.set_calculator_mode(0)
+        with self.assertRaises(Exception) as context:
+            self.calculate()
 
 suite = unittest.TestLoader().loadTestsFromTestCase(AztecTestCase)
 unittest.TextTestRunner(verbosity=2).run(suite)
