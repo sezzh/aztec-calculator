@@ -53,7 +53,7 @@ class Aztec(object):
     def __calculate_small(self):
         """Return the result of small's formula."""
         return float('{0:.2f}'.format(((((2.6 * self.__kwargs['nefd'])) /
-                     self.__kwargs['dd'])**2) * (8 / 3600)))
+                self.__kwargs['dd'])**2) * (8 / 3600)))
 
     def __calculate_photometry(self):
         """Return the result dict of Time integration & positional methods."""

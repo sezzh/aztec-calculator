@@ -14,7 +14,7 @@ $ python -m unittest discover -v tests -p test_aztec.py
 class AztecTestCase(unittest.TestCase):
     """Test class for validate correct functionality of Aztec Calculator."""
 
-    VERSION = '0.1.0'
+    VERSION = '0.1.4'
     NAME = 'azTec'
     MODE = [1, 2, 3]
     DEFAULT_MODE = 1
