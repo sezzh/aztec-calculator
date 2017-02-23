@@ -8,7 +8,7 @@ class Aztec(object):
     # Class attributes.
     FWHM = 1
     NEFD = 4.9
-    VERSION = '0.1.0'
+    VERSION = '0.1.4'
     NAME = 'azTec'
 
     def __init__(self, mode):
