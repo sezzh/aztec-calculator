@@ -1,23 +1,34 @@
+"""Unit Test Case for aztec calculator."""
 # -*- coding: utf-8 -*-
-"""Run Test.
-$ python -m unittest discover -v tests -p test_aztec.py
-"""
 import unittest
+
 from aztec_calculator.aztec import Aztec
+
+"""Run Test.
+
+$ python -m unittest discover -v tests -p test_aztec.py
+
+"""
+
 
 class AztecTestCase(unittest.TestCase):
     """Test class for validate correct functionality of Aztec Calculator."""
+
     VERSION = '0.1.0'
     NAME = 'azTec'
     MODE = [1, 2, 3]
+    DEFAULT_MODE = 1
 
     def setUp(self):
-        self.calc = Aztec(1)
+        """Setup for each test."""
+        self.calc = Aztec(self.DEFAULT_MODE)
 
     def tearDown(self):
+        """Shutdown of calc instance."""
         self.calc = None
 
     def test_get_calculator_name(self):
+        """Calculator name test."""
         self.assertEqual(
             self.NAME,
             self.calc.get_calculator_name(),
@@ -25,17 +36,20 @@ class AztecTestCase(unittest.TestCase):
         )
 
     def test_get_calculator_version(self):
+        """Calculator version test."""
         self.assertEqual(
             self.VERSION, self.calc.get_calculator_version(),
             'message'
         )
 
     def test_get_calculator_mode(self):
+        """Calculator mode test."""
         for i in self.MODE:
             self.calc.set_calculator_mode(i + 1)
             self.assertEqual(i + 1, self.calc.get_calculator_mode(), 'message')
 
     def test_calculate_large(self):
+        """Calculator large test."""
         self.calc.set_calculator_mode(1)
         map_area = 100
         dd = 0.2
@@ -46,6 +60,7 @@ class AztecTestCase(unittest.TestCase):
         )
 
     def test_calculate_small(self):
+        """Calculator small test."""
         self.calc.set_calculator_mode(2)
         nefd = 4.9
         dd = 0.2
@@ -56,6 +71,7 @@ class AztecTestCase(unittest.TestCase):
         )
 
     def test_calculate_photometry(self):
+        """Calculator photometry test."""
         self.calc.set_calculator_mode(3)
         nefd = 4.9
         s = 5
