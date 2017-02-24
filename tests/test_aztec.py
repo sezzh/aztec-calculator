@@ -54,7 +54,7 @@ class AztecTestCase(unittest.TestCase):
         map_area = 100
         dd = 0.2
         self.assertEqual(
-            {'Hr': 113.64},
+            {'Hr': 113.63636363636363},
             self.calc.calculate(map_area=map_area, dd=dd),
             'message'
         )
@@ -64,9 +64,10 @@ class AztecTestCase(unittest.TestCase):
         self.calc.set_calculator_mode(2)
         nefd = 4.9
         dd = 0.2
+        rounded = 2
         self.assertEqual(
             {'Hr': 9.02},
-            self.calc.calculate(nefd=nefd, dd=dd),
+            self.calc.calculate(nefd=nefd, dd=dd, rounded=rounded),
             'message'
         )
 
@@ -76,9 +77,10 @@ class AztecTestCase(unittest.TestCase):
         nefd = 4.9
         s = 5
         snr = 10
+        rounded = 2
         self.assertEqual(
             {'Sec': 1318.51, 'arcsec': 0.06},
-            self.calc.calculate(nefd=nefd, s=s, snr=snr),
+            self.calc.calculate(nefd=nefd, s=s, snr=snr, rounded=rounded),
             'message'
         )
 
@@ -91,16 +93,28 @@ class AztecTestCase(unittest.TestCase):
             self.calc.calculate(dd=dd, map_area=map_area)
 
     def test_expect_error_mode_code_greater(self):
-        """."""
+        """Expected raises an exception when passing a value greater than 3."""
         self.calc.set_calculator_mode(4)
         with self.assertRaises(Exception) as context:
             self.calculate()
 
     def test_expect_error_mode_code_less(self):
-        """."""
+        """Expected raises an exception when passing a value lesser than 1."""
         self.calc.set_calculator_mode(0)
         with self.assertRaises(Exception) as context:
             self.calculate()
+
+    def test_round_decimals(self):
+        """Expected a return value with no more than 2 decimals."""
+        self.calc.set_calculator_mode(1)
+        map_area = 100
+        dd = 0.2
+        rounded = 2
+        self.assertEqual(
+            {'Hr': 113.64},
+            self.calc.calculate(map_area=map_area, dd=dd, rounded=rounded),
+            'message'
+        )
 
 suite = unittest.TestLoader().loadTestsFromTestCase(AztecTestCase)
 unittest.TextTestRunner(verbosity=2).run(suite)
