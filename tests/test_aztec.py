@@ -62,25 +62,23 @@ class AztecTestCase(unittest.TestCase):
     def test_calculate_small(self):
         """Calculator small test."""
         self.calc.set_calculator_mode(2)
-        nefd = 4.9
         dd = 0.2
         rounded = 2
         self.assertEqual(
             {'Hr': 9.02},
-            self.calc.calculate(nefd=nefd, dd=dd, rounded=rounded),
+            self.calc.calculate(dd=dd, rounded=rounded),
             'message'
         )
 
     def test_calculate_photometry(self):
         """Calculator photometry test."""
         self.calc.set_calculator_mode(3)
-        nefd = 4.9
         s = 5
         snr = 10
         rounded = 2
         self.assertEqual(
             {'Sec': 1318.51, 'arcsec': 0.06},
-            self.calc.calculate(nefd=nefd, s=s, snr=snr, rounded=rounded),
+            self.calc.calculate(s=s, snr=snr, rounded=rounded),
             'message'
         )
 
