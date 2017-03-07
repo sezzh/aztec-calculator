@@ -100,6 +100,7 @@ class Aztec(object):
 
         result = {}
         self.__kwargs = kwargs
+        self.__kwargs['nefd'] = self.NEFD
         try:
             if self.__mode == 1:
                 result['Hr'] = self.__round_decimals(self.__calculate_large())
