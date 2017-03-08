@@ -28,7 +28,7 @@ class AztecTestCase(unittest.TestCase):
         self.calc = None
 
     def test_get_calculator_name(self):
-        """Calculator name test."""
+        """Should return a String"""
         self.assertEqual(
             self.NAME,
             self.calc.get_calculator_name(),
