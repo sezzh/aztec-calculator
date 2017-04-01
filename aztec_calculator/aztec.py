@@ -122,6 +122,6 @@ class Aztec(object):
     def __round_decimals(self, callback):
         """Method which returns the result of the formulas rounded."""
         if 'rounded' in self.__kwargs:
-            return round(callback, self.__kwargs['rounded'])
+            return round(callback, 4)
         else:
             return callback
