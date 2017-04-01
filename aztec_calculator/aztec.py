@@ -6,7 +6,7 @@ class Aztec(object):
     """Aztec calculator class."""
 
     # Class attributes.
-    FWHM = 1
+    FWHM = 444
     NEFD = 4.9
     VERSION = '0.1.5'
     NAME = 'azTec'
@@ -122,6 +122,6 @@ class Aztec(object):
     def __round_decimals(self, callback):
         """Method which returns the result of the formulas rounded."""
         if 'rounded' in self.__kwargs:
-            return round(callback, 4)
+            return round(callback, self.__kwargs['rounded'])
         else:
             return callback
